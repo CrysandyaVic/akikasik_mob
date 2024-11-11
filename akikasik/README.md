@@ -2,7 +2,6 @@
 
 ## Jelaskan apa yang dimaksud dengan stateless widget dan stateful widget, dan jelaskan perbedaan dari keduanya.
 1. **Stateless Widget** : widget yang tidak memiliki state atau keadaan yang bisa berubah. Artinya, setelah widget ini tampil di layar, tampilan dan isinya tidak akan berubah selama widget tersebut aktif. Contoh dari Stateless Widget ini adalah widget Text, Icon, dan Container.
-
 2. **Stateful Widget** : widget yang memiliki state atau keadaan yang bisa berubah selama aplikasi berjalan. Berbeda dengan Stateless Widget, Stateful Widget dapat memperbarui tampilannya ketika terjadi perubahan pada state di dalamnya. Contoh dari Stateful Widget antara lain Checkbox, TextField, dan AnimatedContainer.
 
 ## Sebutkan widget apa saja yang kamu gunakan pada proyek ini dan jelaskan fungsinya.
@@ -82,7 +81,7 @@ Fungsi `setState()` digunakan dalam `StatefulWidget` untuk memperbarui state (ke
 3. **Modifikasi file**
 
     Membuat file baru bernama `menu.dart` pada folder `lib` tambahkan import `package:flutter/material.dart`.
-
+    
     Di `main.dart`, potong (cut) kode class`MyHomePage`hingga akhir file, lalu paste di `menu.dart`. Hapus seluruh isi kelas _MyHomePageState, ubah class`MyHomePage`extends StatefulWidget menjadi class`MyHomePage`extends StatelessWidget, dan sesuaikan constructor-nya agar menjadi `MyHomePage({super.key});`.
 
     Kemudian, ubah tema warna aplikasi di main.dart dengan mengatur properti colorScheme di dalam MaterialApp, warna yang saya pakai adalah teal. Pada bagian konfigurasi widget home, ubah baris home: const MyHomePage(title: 'Flutter Demo Home Page'), menjadi home: MyHomePage(), dengan menghapus const dan parameter title.
@@ -92,3 +91,100 @@ Fungsi `setState()` digunakan dalam `StatefulWidget` untuk memperbarui state (ke
     Selain itu, tambahkan ItemHomepage, class yang berisi atribut name, color dan icon untuk setiap tombol fitur di halaman. Buat daftar items dalam`MyHomePage`untuk menyimpan tombol-tombol fitur seperti "Lihat Produk", "Logout", dan "Tambah Produk". Selanjutnya, buat class `ItemCard` yang bertanggung jawab menampilkan tombol-tombol ini. Atur agar ketika ditekan, tombol akan memunculkan notifikasi SnackBar dengan pesan tertentu.
 
     Akhirnya, di dalam metode build() pada MyHomePage, susun `InfoCard` dan `ItemCard` dalam layout grid atau row agar tampil rapi di halaman utama. Jalankan aplikasi untuk memastikan semuanya berjalan baik, lalu periksa kode dengan flutter analyze untuk mendeteksi kesalahan. Jika langkah-langkah ini dilakukan dengan benar, proyek akan tertata rapi dan siap untuk dikembangkan lebih lanjut sesuai dengan prinsip clean architecture.
+
+
+# Tugas 8
+## Apa kegunaan const di Flutter? Jelaskan apa keuntungan ketika menggunakan const pada kode Flutter. Kapan sebaiknya kita menggunakan const, dan kapan sebaiknya tidak digunakan?
+ const digunakan untuk mendefinisikan constant value atau nilai konstan, yang artinya nilai tersebut tidak akan berubah selama runtime aplikasi.
+
+ Keuntungan `const`:
+ 1.  **Memori Lebih Efisien**: Objek const hanya dibuat sekali dan disimpan dalam memori. Semua penggunaan lain dari objek const akan mengacu ke objek yang sama, menghemat memori.
+ 2. **Performa Lebih Baik**: Karena objek const diinisialisasi saat kompilasi, tidak ada proses pembuatan ulang saat aplikasi berjalan. 
+ 3. **Penulisan Kode yang Lebih Bersih**: Dengan const, kode menjadi lebih konsisten dan menunjukkan niat bahwa objek tersebut tidak akan berubah.
+
+**Gunakan** const pada widget atau objek yang statis dan tidak berubah, seperti teks atau ikon tetap, agar Flutter dapat mengoptimalkan performa dengan menghemat memori dan menghindari pembuatan ulang. Namun,    **hindari** const untuk widget yang perlu diperbarui berdasarkan variabel dinamis atau interaksi pengguna, seperti dalam StatefulWidget yang membutuhkan pembaruan tampilan.
+ 
+
+
+## Jelaskan dan bandingkan penggunaan Column dan Row pada Flutter. Berikan contoh implementasi dari masing-masing layout widget ini!
+1. **Column** 
+   
+   Column digunakan untuk menyusun widget secara vertikal, dari atas ke bawah. Setiap widget yang berada di dalam Column akan ditumpuk secara vertikal satu per satu. Parameter dari column ada 
+   
+    * `mainAxisAlignment`: Mengatur posisi widget di sepanjang sumbu utama (vertikal) dalam Column.
+    * `crossAxisAlignment`: Mengatur posisi widget di sepanjang sumbu silang (horizontal) dalam Column.
+
+    implementasi:
+    ```
+    Column(
+        mainAxisAlignment: MainAxisAlignment.center,  
+        crossAxisAlignment: CrossAxisAlignment.start,  
+        children: <Widget>[
+            Text("Flutter"),
+            Icon(Icons.flutter_dash),
+            ElevatedButton(
+            onPressed: () {},
+            child: Text("Click Me"),
+            ),
+        ],
+    )
+2. **Row**
+
+   Row digunakan untuk menyusun widget secara horizontal, dari kiri ke kanan. Setiap widget yang berada di dalam Row akan disusun secara horizontal satu per satu. Parameter dari row ada :
+    * `mainAxisAlignment`: Mengatur posisi widget di sepanjang sumbu utama (horizontal) dalam Row.
+    * `crossAxisAlignment`: Mengatur posisi widget di sepanjang sumbu silang (vertikal) dalam Row.
+
+    Implementasi:
+    ```
+    Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,   
+        crossAxisAlignment: CrossAxisAlignment.center,     
+        children: <Widget>[
+            Icon(Icons.home),
+            Text("Home"),
+            Icon(Icons.settings),
+        ],
+    )
+## Sebutkan apa saja elemen input yang kamu gunakan pada halaman form yang kamu buat pada tugas kali ini. Apakah terdapat elemen input Flutter lain yang tidak kamu gunakan pada tugas ini? Jelaskan!
+
+Elemen input yang sudah dipakai:
+1. **TextFormField**: Digunakan untuk mengisi Name, Deskripsi, dan amount dari item yang ingin diinput
+2. **ElevatedButton**: Tombol untuk menyimpan input
+
+Elemen input yang belum digunakan:
+
+1.  **Checkbox**: Kotak centang untuk pilihan ya/tidak atau on/off. Cocok untuk menyetujui persyaratan atau pilihan biner.
+  
+2. **Radio Button**: Tombol untuk memilih satu opsi dari beberapa pilihan. Cocok untuk pilihan tunggal dalam sebuah grup, seperti jenis kelamin.
+
+3. **Switch**: Sakelar on/off yang lebih visual, sering digunakan untuk pengaturan atau preferensi.
+
+5. **Slider**: Penanda yang digeser untuk memilih nilai dalam rentang tertentu, seperti mengatur volume atau kecerahan.
+
+6. **DatePicker**: Dialog pemilih tanggal. Cocok untuk input tanggal, seperti tanggal lahir atau pemesanan.
+
+7. **DropdownButton**: Daftar turun bawah untuk memilih satu opsi dari banyak pilihan. Cocok untuk daftar seperti negara atau kategori.
+
+8. **Autocomplete**: Input teks dengan fitur saran otomatis berdasarkan teks yang diketik. Cocok untuk pencarian produk atau lokasi.
+
+## Bagaimana cara kamu mengatur tema (theme) dalam aplikasi Flutter agar aplikasi yang dibuat konsisten? Apakah kamu mengimplementasikan tema pada aplikasi yang kamu buat?
+dengan membuat scheme di dalam theme pada `main.dart`
+``` 
+ theme: ThemeData(
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.teal,
+        ).copyWith(secondary: Colors.teal[600]),
+        useMaterial3: true,
+      ),
+```
+dan untuk setiap widget yang ingin seragam dengan theme aplikasi dapat menambah kode ini `color: Theme.of(context).colorScheme.primary`
+
+## Bagaimana cara kamu menangani navigasi dalam aplikasi dengan banyak halaman pada Flutter?
+Pada aplikasi ini saya menggunakan `push`. `Push` ini akan menjadi action ketika suatu tombol atau tulisan ditekan `onTap: (){}`. Contoh dari kode push adalah seperti ini 
+```
+Navigator.push(
+    context,
+    MaterialPageRoute(
+    builder: (context) => PageLain(),
+    ));
+```
