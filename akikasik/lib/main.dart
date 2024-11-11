@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:akikasik/menu.dart';
+import 'package:akikasik/screens/menu.dart';
 
 void main() {
   runApp(const MyApp());
