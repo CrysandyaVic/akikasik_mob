@@ -188,3 +188,76 @@ Navigator.push(
     builder: (context) => PageLain(),
     ));
 ```
+# Tugas 9
+## Jelaskan mengapa kita perlu membuat model untuk melakukan pengambilan ataupun pengiriman data JSON? Apakah akan terjadi error jika kita tidak membuat model terlebih dahulu?
+Model diperlukan untuk mengonversi data JSON menjadi objek Dart yang dapat digunakan dalam aplikasi Flutter
+Tanpa model, kita hanya akan mendapatkan Map<String, dynamic> yang:
+
+* Rawan error karena tidak ada type safety
+* Sulit untuk maintenance karena tidak ada struktur yang jelas
+* Tidak ada autocomplete dari IDE
+
+Meskipun tidak akan selalu error tanpa model, tapi berisiko:
+
+* Runtime errors jika struktur JSON berubah
+* Typo dalam pengaksesan property
+* Kesulitan dalam debugging
+
+## Jelaskan fungsi dari library http yang sudah kamu implementasikan pada tugas ini
+* Library http digunakan untuk melakukan HTTP requests ke server
+* Mendukung berbagai metode HTTP (GET, POST, PUT, DELETE)
+* Dapat menangani headers dan body requests
+* Memberikan response yang bisa diproses lebih lanjut  
+
+## Jelaskan fungsi dari CookieRequest dan jelaskan mengapa instance CookieRequest perlu untuk dibagikan ke semua komponen di aplikasi Flutter.
+CookieRequest berfungsi untuk:
+
+* Menyimpan dan mengelola cookies session
+* Menjaga state autentikasi
+* Melakukan HTTP requests dengan cookies yang konsisten
+
+
+Instance perlu dibagikan karena:
+
+* Menjaga konsistensi session di seluruh aplikasi
+* Menghindari multiple login
+* Memungkinkan akses state autentikasi dari berbagai widget
+* Efisiensi resource (tidak perlu membuat instance baru berkali-kali)
+
+## Jelaskan mekanisme pengiriman data mulai dari input hingga dapat ditampilkan pada Flutter.
+1. User memasukkan data melalui form
+2. Data divalidasi di Flutter
+3. Data dikonversi ke format JSON
+4. Dikirim ke Django menggunakan http.post
+5. Django memproses data
+6. Mengirim response
+7. Flutter menerima dan memparse response
+8. UI diupdate sesuai response
+
+## Jelaskan mekanisme autentikasi dari login, register, hingga logout. Mulai dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter.
+
+**login**
+1. User input credentials di Flutter
+2. Data dikirim ke Django endpoint /login
+3. Django memvalidasi credentials
+4. Jika valid:
+   - Django membuat session
+   - Mengirim cookies
+5. Flutter menyimpan cookies via CookieRequest
+6. Redirect ke homepage
+
+**register**
+1. User input data registrasi
+2. Data dikirim ke Django endpoint /register
+3. Django validasi data
+4. Jika valid:
+   - Create user baru
+   - Return success response
+5. Flutter redirect ke login page
+ 
+**logout**
+1. User tap logout
+2. Request ke Django endpoint /logout
+3. Django hapus session
+4. CookieRequest clear cookies
+5. Flutter redirect ke login page

@@ -1,4 +1,5 @@
 import 'package:akikasik/screens/itementry_form.dart';
+import 'package:akikasik/screens/list_itementry.dart';
 import 'package:flutter/material.dart';
 import 'package:akikasik/screens/menu.dart';
 // TODO: Impor halaman MoodEntryFormPage jika sudah dibuat
@@ -66,6 +67,17 @@ class LeftDrawer extends StatelessWidget {
                     ));
               },
             ),
+            ListTile(
+              leading: const Icon(Icons.add_reaction_rounded),
+              title: const Text('Daftar Item'),
+              onTap: () {
+                  // Route menu ke halaman item entry
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const ItemEntryPage()),
+                  );
+              },
+          ),
         ],
       ),
     );
