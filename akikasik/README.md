@@ -261,3 +261,56 @@ Instance perlu dibagikan karena:
 3. Django hapus session
 4. CookieRequest clear cookies
 5. Flutter redirect ke login page
+
+## Langkah Langkah Implementasi
+
+
+
+### Setup Django
+1. Buat django-app `authentication`
+2. Install dan setup `django-cors-headers`
+3. Tambahkan konfigurasi CORS dan allowed hosts di settings.py
+4. Buat view untuk login di `authentication/views.py`
+5. Buat view untuk register di `authentication/views.py`
+6. Setup URL routing di urls.py
+
+### Setup Flutter
+1. Install package provider dan pbp_django_auth
+2. Update main.dart untuk menambahkan Provider
+3. Buat halaman login (login.dart)
+4. Buat halaman register (register.dart)
+5. Ubah home page ke LoginPage
+
+### Integrasi Data
+1. Generate model dari JSON menggunakan Quicktype
+   - Buat folder `lib/models/`
+   - Generate code dari Quicktype
+   - Simpan model di folder models
+
+2. Setup HTTP Request
+   - Install package http
+   - Setup permission internet di AndroidManifest.xml 
+   - Buat fungsi fetch data
+
+3. Implementasi UI
+   - Buat halaman untuk menampilkan data
+   - Hubungkan dengan drawer dan navigation
+   - Implementasi list view dengan data dari API
+
+### Form & Logout
+1. Create Data
+   - Buat endpoint untuk create data di Django
+   - Integrasikan form Flutter dengan endpoint Django
+   - Handle response dari API
+
+2. Logout Feature
+   - Buat endpoint logout di Django 
+   - Implementasi fitur logout di Flutter
+   - Tambahkan button logout
+   - Handle logout response
+
+### Product detail page
+1. Update file list_itementry agar setiap item bisa ditap
+2. Buat page baru dalam subdir screens yang berisi detail produk
+3. routing button ke detail page
+4. Buat button untuk kembali ke list page
