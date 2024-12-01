@@ -14,7 +14,6 @@ class LeftDrawer extends StatelessWidget {
         children: [
           DrawerHeader(
             // TODO: Bagian drawer header
-
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.primary,
             ),
@@ -43,40 +42,40 @@ class LeftDrawer extends StatelessWidget {
             ),
 
           ),
-            ListTile(
-              leading: const Icon(Icons.home_outlined),
-              title: const Text('Halaman Utama'),
-              // Bagian redirection ke MyHomePage
-              onTap: () {
+          ListTile(
+            leading: const Icon(Icons.home_outlined),
+            title: const Text('Halaman Utama'),
+            // Bagian redirection ke MyHomePage
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyHomePage(),
+                  ));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.add),
+            title: const Text('Tambah Item'),
+            // Bagian redirection ke MoodEntryFormPage
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ItemEntryFormPage(),
+                  ));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.remove_red_eye_outlined),
+            title: const Text('Daftar Item'),
+            onTap: () {
+                // Route menu ke halaman item entry
                 Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => MyHomePage(),
-                    ));
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.mood),
-              title: const Text('Tambah Item'),
-              // Bagian redirection ke MoodEntryFormPage
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ItemEntryFormPage(),
-                    ));
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.add_reaction_rounded),
-              title: const Text('Daftar Item'),
-              onTap: () {
-                  // Route menu ke halaman item entry
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const ItemEntryPage()),
-                  );
-              },
+                    MaterialPageRoute(builder: (context) => const ItemEntryPage()),
+                );
+            },
           ),
         ],
       ),
